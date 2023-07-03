@@ -1,0 +1,21 @@
+.all-products{
+    margin: 10px;
+}
+.price{
+    text-align: end;
+    display: flex
+}
+.admin-cards {
+    float: left;
+    padding: 5px;
+    height: 370px;
+    width: 280px;
+    margin: 8px;
+    margin-bottom: 70px;
+    margin-top: -1px;
+}
+.admin-card-img{
+    height: 150px;
+    margin-left: 18%;
+
+}
