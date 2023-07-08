@@ -50,8 +50,8 @@ function Login() {
         <>
             <div className='main'>
                 <form onSubmit={loginHandler} className="form">
-                    <div class="animate__animated animate__fadeIn right">
-                        <h1 className="login-heading"> Login to continue </h1>
+                    <div className="animate__animated animate__fadeIn right">
+                        <h1 className="login-heading bg-red-500"> Login to continue </h1>
                         <input
                             required
                             className="input"
