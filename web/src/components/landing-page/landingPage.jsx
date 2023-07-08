@@ -5,7 +5,7 @@ import {Link } from "react-router-dom";
 function front() {
     return (
         <div className='main'>  
-           <Link to={`/login`}><button type="submit" class="animate__animated animate__fadeIn getStarted">Let's Get Started </button></Link>
+           <Link to={`/login`}><button type="submit" className="animate__animated animate__fadeIn getStarted">Let's Get Started </button></Link>
         </div>
     )
 }
