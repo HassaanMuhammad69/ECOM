@@ -1,7 +1,7 @@
 import express from "express";
 import { orderModel } from "../dbRepo/model.mjs";
 import mongoose from "mongoose";
-import{ orderStatus} from './constant.mjs'
+
 
 const router = express.Router();
 
@@ -9,7 +9,6 @@ router.post("/orders", async (req, res) => {
   const body = req.body;
   if (
     // validation
-    // !body.status||
     !body.firstName||
     !body.name ||
     !body.id ||

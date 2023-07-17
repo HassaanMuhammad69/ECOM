@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from './store/Context';
 import axios from "axios";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,14 +12,19 @@ import Gallery from "./components/admin/add-item/addItem";
 
 import Login from "./components/login/login";
 import Signup from "./components/signup/signup";
-import LandingPage from "./components/landing-page/landingPage";
+// import LandingPage from "./components/landing-page/landingPage";
 
 import UserHome from "./components/user/userHome";
 import UserCart from "./components/user/userCart";
 import UserProfile from "./components/user/userProfile";
 
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
+
+
 function App() {
   let { state, dispatch } = useContext(GlobalContext);
+  const [nav, setNav] = useState(false)
+
 
   useEffect(() => {
     getProfile()
@@ -89,26 +94,33 @@ function App() {
     }
   }
 
+  const handleNav = () => {
+    setNav(!nav)
+  }
+
   return (
     <div>
       {
         // for user 
         (state.isLogin === true) ?
-          <div>
-            <nav className="navbar">
-              <ul >
-                <h1>DISCOUNT STORE</h1>
-                <input type="text" placeholder="Search by product name" />
-                <div>
-
-                  <li> <Link to={`/`}>Home</Link> </li>
-                  <li> <Link to={`/gallery`}>Cart</Link> </li>
-                  <li> <Link to={`/about`}>Account</Link> </li>
-                  <li><button className="logout" onClick={logoutHandler}>Logout</button></li>
-                </div>
-              </ul>
-            </nav>
-            <div className="image"></div>
+          <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
+            <h1 className='w-full text-3xl font-bold text-[#00df9a]'>MIDVATION</h1>
+            <ul className='hidden md:flex'>
+              <li className='p-4'><Link to={`/`}>Home</Link></li>
+              <li className='p-4'><Link to={`/gallery`}>Cart</Link></li>
+              <li className='p-4'><Link to={`/about`}>Account</Link></li>
+              <li className='p-4'><button className="logout" onClick={logoutHandler}>Logout</button></li>
+            </ul>
+            <div onClick={handleNav} className='block md:hidden'>
+              {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+            </div>
+            <ul className={nav ? 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500' : 'ease-in-out duration-500 fixed left-[-100%]'}>
+              <h1 className='w-full text-3xl font-bold text-[#00df9a] m-4'>MIDVATION</h1>
+              <li className='p-4 border-b border-gray-600'><Link to={`/`}>Home</Link></li>
+              <li className='p-4 border-b border-gray-600'><Link to={`/gallery`}>Cart</Link></li>
+              <li className='p-4 border-b border-gray-600'><Link to={`/about`}>Account</Link></li>
+              <li className='p-4 border-b border-gray-600'><button className="logout" onClick={logoutHandler}>Logout</button></li>
+            </ul>
           </div>
           : null}
 
@@ -124,24 +136,38 @@ function App() {
 
       { // for admin
         (state.isLogin === 1) ?
-          <nav className="navbar">
-            <ul >
-              <h1>DISCOUNT STORE</h1>
-              <input type="text" placeholder="Search here" />
-              <div>
-                <li>
-                  {/* <FontAwesomeIcon icon={faHome} /> */}
-                  <Link to={`/`}>Home</Link> </li>
-                <li>
-                  {/* <FontAwesomeIcon icon={faAdd} />  */}
-                  <Link to={`/gallery`}>Add items</Link> </li>
-                <li>
-                  {/* <FontAwesomeIcon icon={faUser} /> */}
-                  <Link to={`/about`}>Account</Link> </li>
-                  
-              </div>
+          // <nav className="navbar">
+          //   <ul >
+          //     <h1>DISCOUNT STORE</h1>
+          //     <input type="text" placeholder="Search here" />
+          //     <div>
+          //       <li> <Link to={`/`}>Home</Link> </li>
+          //       <li> <Link to={`/gallery`}>Add items</Link> </li>
+          //       <li> <Link to={`/about`}>Account</Link> </li>
+          //     </div>
+          //   </ul>
+          // </nav>
+
+          <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
+            <h1 className='w-full text-3xl font-bold text-[#00df9a]'>MIDVATION</h1>
+            <ul className='hidden md:flex'>
+              <li className='p-4'><Link to={`/`}>Home</Link></li>
+              <li className='p-4'><Link to={`/gallery`}>Add items</Link></li>
+              <li className='p-4'><Link to={`/about`}>Account</Link></li>
+              <li className='p-4'><button className="logout" onClick={logoutHandler}>Logout</button></li>
             </ul>
-          </nav>
+            <div onClick={handleNav} className='block md:hidden'>
+              {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+            </div>
+            <ul className={nav ? 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500' : 'ease-in-out duration-500 fixed left-[-100%]'}>
+              <h1 className='w-full text-3xl font-bold text-[#00df9a] m-4'>MIDVATION</h1>
+              <li className='p-4 border-b border-gray-600'><Link to={`/`}>Home</Link></li>
+              <li className='p-4 border-b border-gray-600'><Link to={`/gallery`}>Add item</Link></li>
+              <li className='p-4 border-b border-gray-600'><Link to={`/about`}>Account</Link></li>
+              <li className='p-4 border-b border-gray-600'><button className="logout" onClick={logoutHandler}>Logout</button></li>
+            </ul>
+          </div>
+
           : null}
 
       {(state.isLogin === 1) ?
@@ -156,8 +182,8 @@ function App() {
 
       {(state.isLogin === false) ?
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<LandingPage />} />
+          {/* <Route path="/login" element={<Login />} /> */}
+          <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<Navigate to="/" replace={true} />} />
         </Routes>

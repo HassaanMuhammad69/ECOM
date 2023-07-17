@@ -4,8 +4,8 @@ import { BASE_URL } from "../constants";
 const AddOrder = (data) => {
   axios
     .post(`${BASE_URL}/orders`, {
-      // status: data.status,
-      firstName:data.firstName,
+      
+      firstName: data.firstName,
       id: data._id,
       name: data.name,
       price: data.price,
