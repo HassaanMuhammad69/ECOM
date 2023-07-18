@@ -28,6 +28,13 @@ function App() {
 
   useEffect(() => {
     getProfile()
+    if(localStorage.getItem("isLogin") === 'true'){
+      console.log("tttttt")
+      dispatch({
+        type: 'USER_LOGIN',
+        
+      })
+    }
   }, [])
 
   const getProfile = async () => {
@@ -35,18 +42,21 @@ function App() {
       let response = await axios.get(`${state.baseUrl}/profile`, {
         withCredentials: true
       })
-      if (response.data.profile.role === "admin") {
+      console.log("response -----==== ", response)
+      if (response?.data?.profile?.role === "admin") {
         dispatch({
           type: 'USER_ADMIN',
-          payload: response.data.profile
+          payload: response?.data?.profile
         })
+        
       } else {
         dispatch({
           type: 'USER_LOGIN',
-          payload: response.data.profile
+          payload: response?.data?.profile
         })
+        console.log("response -----==== ", response)
       }
-    } catch (error) {
+    } catch (error) {console.log("oooooo")
       dispatch({
         type: 'USER_LOGOUT'
       })
@@ -71,7 +81,7 @@ function App() {
     }, function (error) {
       // Any status codes that falls outside the range of 2xx cause this function to trigger
       // Do something with response error
-      if (error.response.status === 401) {
+      if (error.response.status === 401) {console.log("pppppp")
         dispatch({
           type: 'USER_LOGOUT'
         })
@@ -81,7 +91,7 @@ function App() {
   })
 
   const logoutHandler = async () => {
-    try {
+    try {console.log("rrrrrr")
       let response = await axios.post(`${state.baseUrl}/logout`, {},
         {
           withCredentials: true
@@ -99,14 +109,14 @@ function App() {
   }
 
   return (
-    <div>
+    <div>{console.log("isLogin ", state)}
       {
         // for user 
         (state.isLogin === true) ?
           <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
             <h1 className='w-full text-3xl font-bold text-[#00df9a]'>MIDVATION</h1>
             <ul className='hidden md:flex'>
-              <li className='p-4'><Link to={`/`}>Home</Link></li>
+              <li className='p-4'><Link to={`/user-home`}>Home</Link></li>
               <li className='p-4'><Link to={`/gallery`}>Cart</Link></li>
               <li className='p-4'><Link to={`/about`}>Account</Link></li>
               <li className='p-4'><button className="logout" onClick={logoutHandler}>Logout</button></li>
@@ -116,7 +126,7 @@ function App() {
             </div>
             <ul className={nav ? 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500' : 'ease-in-out duration-500 fixed left-[-100%]'}>
               <h1 className='w-full text-3xl font-bold text-[#00df9a] m-4'>MIDVATION</h1>
-              <li className='p-4 border-b border-gray-600'><Link to={`/`}>Home</Link></li>
+              <li className='p-4 border-b border-gray-600'><Link to={`/user-home`}>Home</Link></li>
               <li className='p-4 border-b border-gray-600'><Link to={`/gallery`}>Cart</Link></li>
               <li className='p-4 border-b border-gray-600'><Link to={`/about`}>Account</Link></li>
               <li className='p-4 border-b border-gray-600'><button className="logout" onClick={logoutHandler}>Logout</button></li>
@@ -127,7 +137,7 @@ function App() {
       {(state.isLogin === true) ?
         /* userRoute */
         <Routes>
-          <Route path="/" element={<UserHome />} />
+          <Route path="/user-home" element={<UserHome />} />
           <Route path="about" element={<UserProfile />} />
           <Route path="gallery" element={<UserCart />} />
           <Route path="*" element={<Navigate to="/" replace={true} />} />

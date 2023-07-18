@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import 'animate.css';
 import { GlobalContext } from '../../store/Context';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,6 +9,8 @@ import './login.css'
 
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
 
+import { GetAllProducts } from "../../services/admin/home";
+import {useNavigate} from 'react-router-dom'
 
 
 function Login() {
@@ -17,7 +19,16 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [nav, setNav] = useState(false)
+    const navigation = useNavigate()
 
+    useEffect(()=>{
+        GetAllProducts()
+      .then((value) => {
+        // setProducts(value)
+      }).catch((err) => {
+        console.log(err, "error")
+      })
+    },[])
 
     const loginHandler = async (e) => {
         e.preventDefault();
@@ -38,6 +49,8 @@ function Login() {
                     type: 'USER_LOGIN',
                     payload: response.data.profile
                 })
+                    navigation('/user-home')
+                
             }
 
             console.log("Login successful");
