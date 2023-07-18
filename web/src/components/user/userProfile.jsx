@@ -90,17 +90,17 @@ function UserProfile() {
                     ORDERS:
                 </p>
                 <div className='max-w-[1240px] mx-auto grid md:grid-cols-3 gap-8'>
-                {orders.map((eachOrder) => {
+                {orders.map((eachOrder, i) => {
                         return (
-                            <>
-                                <div className='w-full shadow-xl bg-gray-800 flex flex-col p-4 md:my-0 my-8 rounded-lg hover:scale-105 duration-300'>
+                           
+                                <div key={i} className='w-full shadow-xl bg-gray-800 flex flex-col p-4 md:my-0 my-8 rounded-lg hover:scale-105 duration-300'>
                                     <h2 className='text-2xl font-bold text-center py-8 text-white'>{state.user.firstName.toUpperCase()}</h2>
                                     <p className='text-center text-1xl border-b font-bold text-white'>{moment(eachOrder.createdOn).fromNow()}</p>
                                     <p className='text-center text-1xl border-b font-bold text-white'>{eachOrder.name}</p>
                                     <p className='text-center text-1xl border-b font-bold text-white'>Total: {eachOrder.price}</p>
 
                                 </div>
-                            </>
+                            
                         )
                     }
                     )
