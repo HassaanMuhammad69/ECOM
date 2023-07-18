@@ -10,7 +10,9 @@ import {
     FaGithubSquare,
     FaInstagram,
     FaTwitterSquare,
-  } from 'react-icons/fa';
+} from 'react-icons/fa';
+import { Link } from "react-router-dom";
+
 
 
 function UserCart() {
@@ -95,7 +97,9 @@ function UserCart() {
                                         })
                                     }}
                                         className='bg-[#00df9a] text-white w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3'
-                                    >CONFIRM ORDER</button>
+                                    >
+                                        <Link to={`/about`}>CONFIRM ORDER</Link>
+                                    </button>
                                 </div>
                             </>
                         )

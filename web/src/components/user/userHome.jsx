@@ -12,6 +12,7 @@ import {
   FaTwitterSquare,
 } from 'react-icons/fa';
 
+import { Link } from "react-router-dom";
 
 
 function Userhome() {
@@ -82,7 +83,9 @@ function Userhome() {
 
                   </div>
                   <button className='bg-[#00df9a] text-white w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3'
-                    onClick={() => { AddToCart(eachProduct) }} >ADD TO CART</button>
+                    onClick={() => { AddToCart(eachProduct) }} >
+                    <Link to={`/gallery`}>ADD TO CART</Link>
+                    </button>
                 </div>
               </>
             )
@@ -100,10 +103,10 @@ function Userhome() {
           <h1 className='w-full text-3xl font-bold text-[#00df9a]'>MIDVATION</h1>
           <p className='py-4'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id odit ullam iste repellat consequatur libero reiciendis, blanditiis accusantium.</p>
           <div className='flex justify-between md:w-[75%] my-6'>
-            <FaFacebookSquare   size={30} />
+            <FaFacebookSquare size={30} />
             <FaInstagram size={30} />
             <FaTwitterSquare size={30} />
-           
+
           </div>
         </div>
         <div className='lg:col-span-2 flex justify-between mt-6'>
