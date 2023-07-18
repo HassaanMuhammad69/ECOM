@@ -1,11 +1,29 @@
 import axios from "axios";
 import { BASE_URL } from "../constants";
 
+// const AddOrder = (data) => {
+//   axios
+//     .post(`${BASE_URL}/orders`, {
+      
+//       firstName: data.firstName,
+//       id: data._id,
+//       name: data.name,
+//       price: data.price,
+//       quantity: data.quantity,
+//       description: data.description,
+//       pictureUrl: data.pictureUrl,
+//     })
+//     .then((response) => {
+//       console.log("response: ", response.data);
+//     })
+//     .catch((err) => {
+//       console.log("error:", err);
+//     });
+// };
+
 const AddOrder = (data) => {
   axios
     .post(`${BASE_URL}/orders`, {
-      
-      firstName: data.firstName,
       id: data._id,
       name: data.name,
       price: data.price,
@@ -21,6 +39,8 @@ const AddOrder = (data) => {
       console.log("error:", err);
     });
 };
+
+
 
 const GetAllOrders = async () => {
   try {

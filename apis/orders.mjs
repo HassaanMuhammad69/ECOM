@@ -5,18 +5,58 @@ import mongoose from "mongoose";
 
 const router = express.Router();
 
+// router.post("/orders", async (req, res) => {
+//   const body = req.body;
+//   if (
+    
+//     !body.firstName||
+//     !body.name ||
+//     !body.id ||
+//     !body.price ||
+//     !body.quantity ||
+//     !body.description ||
+//     !body.pictureUrl
+//   ) {
+//     return res.status(400).send({
+//       message: "required parameters missing",
+//     });
+//   }
+
+//   try {
+//     const createOrder = await orderModel.create({
+      
+//       firstName: body.firstName,
+//       name: body.name,
+//       price: body.price,
+//       quantity: body.quantity,
+//       id: body.id,
+//       description: body.description,
+//       pictureUrl: body.pictureUrl,
+//       owner: new mongoose.Types.ObjectId(body.token._id),
+//     });
+
+//     return res.status(200).send({
+//       message: "order added successfully",
+//     });
+//   } catch (error) {
+//     console.log("create order :: ", error);
+//     return res.status(500).send({
+//       message: "server error",
+//     });
+//   }
+// });
+
 router.post("/orders", async (req, res) => {
   const body = req.body;
   if (
     // validation
-    !body.firstName||
     !body.name ||
     !body.id ||
     !body.price ||
     !body.quantity ||
     !body.description ||
     !body.order ||
-    !body.pictureUrl
+    !body.pictureUrl 
   ) {
     return res.status(400).send({
       message: "required parameters missing",
@@ -25,8 +65,6 @@ router.post("/orders", async (req, res) => {
 
   try {
     const createOrder = await orderModel.create({
-      // status: orderStatus.PENDING,
-      firstName: body.firstName,
       name: body.name,
       price: body.price,
       quantity: body.quantity,

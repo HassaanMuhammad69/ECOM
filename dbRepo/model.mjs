@@ -24,7 +24,6 @@ let cartProductSchema = new mongoose.Schema({
 export const cartProductModel = mongoose.model("carts", cartProductSchema);
 
 
-
 let orderSchema = new mongoose.Schema({
   name: { type: String, required: true },
   price: Number,
@@ -34,10 +33,12 @@ let orderSchema = new mongoose.Schema({
   description: String,
   pictureUrl: String,
   owner: {type: mongoose.ObjectId, required: true, ref: 'Users'},
-  firstName: {type: mongoose.ObjectId, required: true, ref: 'Users'},
   createdOn: { type: Date, default: Date.now },
 });
 export const orderModel = mongoose.model("orders", orderSchema);
+
+
+
 
 const userSchema = new mongoose.Schema({
   firstName: { type: String },
